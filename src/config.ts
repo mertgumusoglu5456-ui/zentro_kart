@@ -13,7 +13,7 @@ export const config = {
   company: 'Zentro Project Agency',
 
   // Web sitesi adresi (https:// dahil)
-  website: 'https://www.zentroproject.com',
+  website: 'https://www.zentroproject.com.tr',
 
   // Telefon numarası (WhatsApp için uluslararası format: 905xxxxxxxxx)
   phone: '+90 530 467 30 54',
