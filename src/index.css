@@ -1,0 +1,51 @@
+/* ===== GLOBAL RESET & CSS VARIABLES ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --c-bg: #d0d0d0;
+  --c-surface: #ffffff;
+  --c-card: #ffffff;
+  --c-card-border: rgba(214, 214, 214, 0.07);
+  --c-accent: #ec6a22;
+  --c-accent-dim: rgba(236,106,34,0.15);
+  --c-text-primary: #0b4b7a;
+  --c-text-secondary: #ec6a22;
+  --c-text-muted: #0b4b7a;
+  --c-divider: rgba(255,255,255,0.06);
+  --c-glow: rgba(201,169,110,0.08);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --radius-card: 24px;
+  --radius-btn: 12px;
+  --shadow-card: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--c-card-border);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--c-bg);
+  color: var(--c-text-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-text-muted); border-radius: 2px; }
+
+/* ===== SELECTION ===== */
+::selection { background: var(--c-accent-dim); color: var(--c-accent); }
