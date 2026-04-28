@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mert",
+    "name": "Mert Gümüşoğlu",
+    "title": "General Manager",
+    "company": "Zentro Project Agency",
+    "website": "https://www.zentroproject.com.tr",
+    "phone": "+90 530 467 30 54",
+    "phoneRaw": "905304673054",
+    "whatsappMessage": "Merhaba, size ulaşmak istedim.",
+    "instagram": "zentroproject",
+    "email": "iletisim@zentroproject.com",
+    "address": "Adapazarı, Sakarya, Türkiye",
+    "mapsUrl": "https://maps.google.com/?q=Adapazarı+Sakarya",
+    "logoSrc": "/logo.png",
+    "showLogo": true
+  },
+  {
+    "id": "arda",
+    "name": "Arda Gümüşoğlu",
+    "title": "VİDEO EDITOR",
+    "company": "Zentro Project Agency",
+    "website": "https://www.zentroproject.com.tr",
+    "phone": "+90 534 514 36 32",
+    "phoneRaw": "905345143632",
+    "whatsappMessage": "Merhaba, size ulaşmak istedim.",
+    "instagram": "zentroproject",
+    "email": "iletisim@zentroproject.com.tr",
+    "address": "Adapazarı, Sakarya, Türkiye",
+    "mapsUrl": "https://maps.google.com/?q=Adapazarı+Sakarya",
+    "logoSrc": "/logo.png",
+    "showLogo": true
+  }
+]

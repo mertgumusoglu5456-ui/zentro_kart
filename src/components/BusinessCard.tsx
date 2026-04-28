@@ -1,5 +1,21 @@
-import { config } from '../config'
 import styles from './BusinessCard.module.css'
+
+export interface UserConfig {
+  id: string
+  name: string
+  title: string
+  company?: string
+  website: string
+  phone: string
+  phoneRaw: string
+  whatsappMessage: string
+  instagram: string
+  email?: string
+  address: string
+  mapsUrl?: string
+  logoSrc: string
+  showLogo: boolean
+}
 
 // ─── İkonlar (inline SVG) ──────────────────────────────────
 const IconPhone = () => (
@@ -47,41 +63,41 @@ function isMobile(): boolean {
   return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 }
 
-function handlePhone() {
-  window.location.href = `tel:${config.phoneRaw}`
-}
-
-function handleWhatsApp() {
-  const msg = encodeURIComponent(config.whatsappMessage)
-  const url = isMobile()
-    ? `whatsapp://send?phone=${config.phoneRaw}&text=${msg}`
-    : `https://wa.me/${config.phoneRaw}?text=${msg}`
-  window.open(url, '_blank')
-}
-
-function handleInstagram() {
-  const url = isMobile()
-    ? `instagram://user?username=${config.instagram}`
-    : `https://www.instagram.com/${config.instagram}/`
-  window.open(url, '_blank')
-}
-
-function handleWebsite() {
-  window.open(config.website, '_blank')
-}
-
-function handleMap() {
-  if (!config.mapsUrl) return
-  window.open(config.mapsUrl, '_blank')
-}
-
-function handleEmail() {
-  window.location.href = `mailto:${config.email}`
-}
-
 // ─── Bileşen ───────────────────────────────────────────────
-export default function BusinessCard() {
-  const mapActive = Boolean(config.mapsUrl)
+export default function BusinessCard({ user }: { user: UserConfig }) {
+  const mapActive = Boolean(user.mapsUrl)
+
+  function handlePhone() {
+    window.location.href = `tel:${user.phoneRaw}`
+  }
+
+  function handleWhatsApp() {
+    const msg = encodeURIComponent(user.whatsappMessage)
+    const url = isMobile()
+      ? `whatsapp://send?phone=${user.phoneRaw}&text=${msg}`
+      : `https://wa.me/${user.phoneRaw}?text=${msg}`
+    window.open(url, '_blank')
+  }
+
+  function handleInstagram() {
+    const url = isMobile()
+      ? `instagram://user?username=${user.instagram}`
+      : `https://www.instagram.com/${user.instagram}/`
+    window.open(url, '_blank')
+  }
+
+  function handleWebsite() {
+    window.open(user.website, '_blank')
+  }
+
+  function handleMap() {
+    if (!user.mapsUrl) return
+    window.open(user.mapsUrl, '_blank')
+  }
+
+  function handleEmail() {
+    window.location.href = `mailto:${user.email}`
+  }
 
   return (
     <div className={styles.scene}>
@@ -93,10 +109,10 @@ export default function BusinessCard() {
         {/* ── Üst bölüm: Logo + Kimlik ── */}
         <header className={styles.header}>
           <div className={styles.logoWrapper}>
-            {config.showLogo ? (
+            {user.showLogo ? (
               <img
-                src={config.logoSrc}
-                alt={`${config.name} logo`}
+                src={user.logoSrc}
+                alt={`${user.name} logo`}
                 className={styles.logo}
                 onError={(e) => {
                   // Logo bulunamazsa placeholder göster
@@ -107,15 +123,15 @@ export default function BusinessCard() {
                 }}
               />
             ) : null}
-            <div className={styles.logoPlaceholder} style={{ display: config.showLogo ? 'none' : 'flex' }}>
-              <span>{config.name.charAt(0)}</span>
+            <div className={styles.logoPlaceholder} style={{ display: user.showLogo ? 'none' : 'flex' }}>
+              <span>{user.name.charAt(0)}</span>
             </div>
           </div>
 
           <div className={styles.identity}>
-            <h1 className={styles.name}>{config.name}</h1>
-            <p className={styles.title}>{config.title}</p>
-            {config.company && <p className={styles.company}>{config.company}</p>}
+            <h1 className={styles.name}>{user.name}</h1>
+            <p className={styles.title}>{user.title}</p>
+            {user.company && <p className={styles.company}>{user.company}</p>}
           </div>
         </header>
 
@@ -127,20 +143,20 @@ export default function BusinessCard() {
           {/* Telefon */}
           <button className={styles.linkRow} onClick={handlePhone} aria-label="Telefon">
             <span className={styles.linkIcon}><IconPhone /></span>
-            <span className={styles.linkText}>{config.phone}</span>
+            <span className={styles.linkText}>{user.phone}</span>
           </button>
 
           {/* Web sitesi */}
           <button className={styles.linkRow} onClick={handleWebsite} aria-label="Web sitesi">
             <span className={styles.linkIcon}><IconGlobe /></span>
-            <span className={styles.linkText}>{config.website.replace(/^https?:\/\//, '')}</span>
+            <span className={styles.linkText}>{user.website.replace(/^https?:\/\//, '')}</span>
           </button>
 
           {/* E-posta */}
-          {config.email && (
+          {user.email && (
             <button className={styles.linkRow} onClick={handleEmail} aria-label="E-posta">
               <span className={styles.linkIcon}><IconMail /></span>
-              <span className={styles.linkText}>{config.email}</span>
+              <span className={styles.linkText}>{user.email}</span>
             </button>
           )}
 
@@ -152,7 +168,7 @@ export default function BusinessCard() {
             aria-disabled={!mapActive}
           >
             <span className={styles.linkIcon}><IconMapPin /></span>
-            <span className={styles.linkText}>{config.address}</span>
+            <span className={styles.linkText}>{user.address}</span>
             {!mapActive && <span className={styles.soon}>Yakında</span>}
           </button>
         </nav>
